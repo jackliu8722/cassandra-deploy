@@ -1,0 +1,30 @@
+# Configuration for cassandra
+
+# cluster name
+cluster_name="RenRen DP Cluster"
+
+# Cassandra deploy host list.
+# listen_address#rpc_port#num_token#native_transport_port#storage_port#ssl_storage_port
+hosts="
+      10.4.19.62#9160#256#9042#7000#7001
+      10.4.19.63#9160#256#9042#7000#7001
+      "
+
+# Partitioner
+partitioner=org.apache.cassandra.dht.Murmur3Partitioner
+
+# seeds
+seeds="10.4.19.62,10.4.19.63"
+
+
+# User
+user=cassandra
+
+# Directory
+install_dir=/data/cassandra
+
+# Cassandra source 
+cassandra_src=apache-cassandra-2.1.1
+
+# Java bin source
+JAVA_HOME=/data/jdk1.7
