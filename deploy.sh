@@ -22,9 +22,12 @@ deploy)
       echo "Starting change configuration, Please wait ..."
       # Change listen address to host 
       listen_address=$host
-      cmd="sed -i 's/listen_address:.*/rpc_address: $listen_address/' $cassandra_conf"
+      cmd="sed -i 's/listen_address:.*/listen_address: $listen_address/' $cassandra_conf"
       ssh "$user@$host" "$cmd" > /dev/null 2>&1
       
+      cmd="sed -i 's/rpc_address:.*/rpc_address: $listen_address/' $cassandra_conf"
+      ssh "$user@$host" "$cmd" > /dev/null 2>&1
+
       # Change rpc port
       rpc_port=`echo $machine | awk -F"#" '{print $2}'`
       cmd="sed -i 's/rpc_port:.*/rpc_port: $rpc_port/' $cassandra_conf"
